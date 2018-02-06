@@ -1,0 +1,6 @@
+*.a
+*.dSYM
+*.swp
+.DS_Store
+obj/
+exe
