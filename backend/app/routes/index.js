@@ -1,5 +1,5 @@
-const update = require('./api');
+const layer = require('./api');
 
-module.exports = function(app, db) {
-	update(app, db);
+module.exports = function(app) {
+	layer(app);
 };

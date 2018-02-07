@@ -1,0 +1,12 @@
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#xyz_map {
+	z-index: -1;
+	position: absolute;
+	width: 1024px;
+	height: 768px;;
+}

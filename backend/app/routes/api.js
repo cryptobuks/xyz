@@ -1,22 +1,56 @@
-var path = "app/exe/exe";
+var path_process = "app/exe/bin/process";
+var path_blackout = "app/exe/bin/blackout";
+var path_img = "app/img/layer.png";
 
+module.exports = function(app) {
+	app.post('/layer', (req, res) => {
+		var exec = require('child_process').exec;
+		var coord = {lat: req.body.lat, lng: req.body.lng};
+		var arg = " " + path_img + " " + coord.lat + " " + coord.lng;
+		var process = (error, stdout, stderr) => {
+				if (error !== null || `${stderr}`) {
+					console.log(`[STD_ERROR] ${stderr}`);
+					console.log(`exec error: ${error}`);
+					res.json({
+						success: false,
+						message: 'Oh no, error...',
+					});
+				}
+				else
+				{
+					console.log(coord);
+					res.json({
+						success: true,
+						message: 'Process Complete !',
+					});
+				}
+			};
+		const script = exec(path_process + arg, process);
+	});
 
-module.exports = function(app, db) {
-	app.post('/fade', (req, res) => {
-		const coord = {lat: req.body.lat, lng: req.body.lng};
-		const arg = " " + coord.lat + " " + coord.lng;
+	app.delete('/layer', (req, res) => {
 		const exec = require('child_process').exec;
-
 		const process = (error, stdout, stderr) => {
 				if (error !== null || `${stderr}`) {
 					console.log(`[STD_ERROR] ${stderr}`);
 					console.log(`exec error: ${error}`);
-					res.send('Oh no, error...');
+					res.json({
+						success: false,
+						message: 'Oh no, error...',
+					});
 				}
 				else
-					res.send("Everything's fine !");
+				{
+					res.json({
+						success: true,
+						message: 'Blackout Complete !',
+					});
+				}
 			};
-		const script = exec(path + arg, process);
-	console.log("Hello from routes!");
+		const script = exec(path_blackout + " " + path_img, process);
+	});
+
+	app.get('/layer', (req, res) => {
+		res.send('Everything is fine !');
 	});
 };
