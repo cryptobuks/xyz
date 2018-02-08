@@ -1,16 +1,31 @@
 "use strict";
-const express = 	require('express');
-const bodyParser = 	require('body-parser');
-const cors =		require('cors');
-const port =		3000;
+//========== DEPENDENCIES ==============================
+const User		= require('./api/models/user');
+const bodyParser	= require('body-parser');
+const config		= require('./config');
+const cors		= require('cors');
+const express		= require('express');
+const jwt		= require('jsonwebtoken');
+const mongoose		= require('mongoose');
+const morgan		= require('morgan');
 
-const app = express();
+const app		= express();
+const port		= process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+//========== CONFIGURATION  =============================
+mongoose.connect(config.database);
+
+app.set('superSecret', config.secret);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
 app.use(cors({origin: '*'}));
 
+//========== ROUTES  ====================================
 require('./api/routes')(app);
 
+//========== LAUNCH COMMAND  ============================
 app.listen(port, () => {
-	  console.log('Listen on localhost:' + port);
+	  console.log('App.Listen at http://localhost:' + port);
 });
