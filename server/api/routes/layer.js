@@ -1,8 +1,8 @@
 var exec 		= require('child_process').exec;
 
-var path_process	= "app/executable/bin/process";
-var path_blackout 	= "app/executable/bin/blackout";
-var path_img 		= "app/img/layer.png";
+var path_process	= "./executable/bin/process";
+var path_blackout 	= "./executable/bin/blackout";
+var path_img 		= "./img/layer.png";
 var key 		= "password";
 
 module.exports = function(app) {
