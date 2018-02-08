@@ -26,7 +26,6 @@ function initMap() {
 	var map = new google.maps.Map(document.getElementById('xyz_map'), {
 		center: pos,
 		disableDefaultUI: true,
-		zoomControl: false,
 		zoom: 13,
 	});
 
