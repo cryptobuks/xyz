@@ -10,6 +10,7 @@ const mongoose		= require('mongoose');
 const morgan		= require('morgan');
 
 const app		= express();
+const apiRoutes		= express.Router();
 const port		= process.env.PORT || 3000;
 
 //========== CONFIGURATION  =============================
@@ -21,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cors({origin: '*'}));
+app.use('/api', apiRoutes);
 
 //========== ROUTES  ====================================
-require('./api/routes')(app);
-
+require('./api/routes')(app, apiRoutes, jwt);
 //========== LAUNCH COMMAND  ============================
 app.listen(port, () => {
 	  console.log('App.Listen at http://localhost:' + port);

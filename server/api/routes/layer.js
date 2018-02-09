@@ -1,8 +1,9 @@
-const exec 		= require('child_process').exec;
-const config		= require('../config/path');
+const exec 	= require('child_process').exec;
+const config	= require('../config/path');
 
-module.exports = function(app) {
-	app.post('/layer', (req, res) => {
+module.exports = function(app, apiRoutes) {
+
+	apiRoutes.post('/layer', (req, res) => {
 		console.log(req.body);
 		if (!req.body.lat || !req.body.lng)
 			return (catch_err(res, "Invalid Coordinate...", 1));
@@ -11,15 +12,15 @@ module.exports = function(app) {
 		routine(config.path_process, arg, res);
 	});
 
-	app.delete('/layer', (req, res) => {
+	apiRoutes.post('/layer_delete', (req, res) => {
 		console.log(req.body);
-		if (req.body.key != key)
+		if (req.body.key != config.key)
 			return (catch_err(res, "Invalid Password...", 1));
 		var arg = " " + config.path_img;
 		routine(config.path_blackout, arg, res);
 	});
 
-	app.get('/layer', (req, res) => {
+	apiRoutes.get('/layer', (req, res) => {
 		res.send('In Layer, Everything is connected !');
 	});
 };
