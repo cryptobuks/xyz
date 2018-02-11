@@ -1,8 +1,8 @@
 const User		= require('../models/user');
 
-module.exports = function(app, apiRoutes, jwt) {
+module.exports = function(app, jwt) {
 
-	apiRoutes.post('/authenticate', function(req, res) {
+	app.post('/authenticate', function(req, res) {
 		User.findOne({
 			name: req.body.name
 		}, function(err, user) {
@@ -36,4 +36,10 @@ module.exports = function(app, apiRoutes, jwt) {
 		});
 	});
 
+	app.get('/authenticate', function(req, res) {
+		res.json({
+			success: false,
+			message: "Work in progress..."
+		});
+	});
 }

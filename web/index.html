@@ -2,17 +2,33 @@
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     	<meta charset="UTF-8">
-	<title>Pratiques Algorithmiques</title>
+	<title>X.Y.Z</title>
 	<script 
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOP1QxyKr6xPD-7VigSthCwxZlIysoGRQ"
 	>
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="map.js"></script>
-	<script src="sketch.js"></script>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="./js/form.js"></script>
+	<script src="./js/map.js"></script>
+	<script src="./js/routine.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/form.css">
 	</head>
-	<body>
-		<div id="xyz_map"><div>
+	<body onload="initMap(); displayUI();">
+		<div id="absolute">
+			<div id="xyz_map"></div>
+			<div id="xyz_layer">
+				<img id="layer" src="../server/img/layer.png" alt="layer" />
+			</div>
+		</div>
+		<div id="UI">
+			<form id="FORM" class="form">
+				<input type="text" 	name="fname"><br>
+				<input type="password"	name="fpassword"><br><br>
+				<input type="color" 	name="fcolor" value="#ffeb5d">
+				<input type="button" onclick="authenticate()" value="Login">
+				<input type="button" onclick="watch()" value="Watch">
+			</form>
+		</div>
 	</body>
 </html>

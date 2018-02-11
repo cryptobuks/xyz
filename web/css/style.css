@@ -1,0 +1,23 @@
+html, body {
+	background-color: white;
+}
+
+#absolute {
+	margin: auto;
+	width: 1024px;
+	height: 768px;;
+}
+
+#xyz_map {
+	z-index: 0;
+	position: absolute;
+	width: 1024px;
+	height: 768px;;
+}
+
+#xyz_layer {
+	z-index: 1;
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+}

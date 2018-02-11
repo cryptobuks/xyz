@@ -19,7 +19,6 @@ module.exports = function(app, apiRoutes, jwt) {
 					next();
 				}
 			});
-
 		}
 		else
 		{
@@ -27,7 +26,6 @@ module.exports = function(app, apiRoutes, jwt) {
 				success: false, 
 				message: 'No token provided.' 
 			}));
-
 		}
 	});
 

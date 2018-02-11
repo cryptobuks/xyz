@@ -1,28 +1,29 @@
 const exec 	= require('child_process').exec;
-const config	= require('../config/path');
+const path	= require('../../config/path');
 
-module.exports = function(app, apiRoutes) {
+module.exports = function(apiRoutes) {
 
-	apiRoutes.post('/layer', (req, res) => {
-		console.log(req.body);
+	apiRoutes.post('/put_pixel', (req, res) => {
 		if (!req.body.lat || !req.body.lng)
 			return (catch_err(res, "Invalid Coordinate...", 1));
 		var coord = {lat: req.body.lat, lng: req.body.lng};
-		var arg = " " + config.path_img + " " + coord.lat + " " + coord.lng;
-		routine(config.path_process, arg, res);
+		var arg = " " + path.path_img + " " + coord.lat + " " + coord.lng;
+		routine(path.path_process, arg, res);
 	});
 
-	apiRoutes.post('/layer_delete', (req, res) => {
-		console.log(req.body);
-		if (req.body.key != config.key)
+	apiRoutes.post('/delete', (req, res) => {
+		if (req.body.key != path.key)
 			return (catch_err(res, "Invalid Password...", 1));
-		var arg = " " + config.path_img;
-		routine(config.path_blackout, arg, res);
+		var arg = " " + path.path_img;
+		routine(path.path_blackout, arg, res);
 	});
 
-	apiRoutes.get('/layer', (req, res) => {
-		res.send('In Layer, Everything is connected !');
-	});
+	apiRoutes.get('/wanderers', function(req, res) {
+		User.find({}, function(err, users) {
+			res.json(users);
+		});
+	}); 
+
 };
 
 const routine = (path, arg, res) =>
