@@ -61,17 +61,14 @@ function post(user) {
 			{
 				update = false;
 				console.log(data.message);
-				err = 0;
 			}
 			else
 			{
 				console.log("server:: " + data.message);
-				err++;
 			}
 		},
 		error: function(xhr, textStatus, error){
 			console.log("net::ERR_CONNECTION_REFUSED");
-			err++;
 		}
 	})
 }

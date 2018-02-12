@@ -7,7 +7,7 @@ const User		= require('./models/user');
 module.exports = function(app, apiRoutes, jwt) {
 
 	// No token required
-	signup(app);
+	register(app);
 	authenticate(app, jwt);
 	// Middleware for apiRoutes/
 	theGuardian(app, apiRoutes, jwt);
